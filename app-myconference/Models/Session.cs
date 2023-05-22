@@ -2,7 +2,7 @@
 
 namespace app_myconference.Models
 {
-    public class Session : ObservableObject
+    public partial class Session : ObservableObject
     {
         // Static
         public int Id { get; set; }
