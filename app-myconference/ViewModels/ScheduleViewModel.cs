@@ -7,16 +7,16 @@ using Xamarin.Google.Crypto.Tink.Prf;
 
 namespace app_myconference.ViewModels
 {
-    public partial class AgendaViewModel : ObservableObject
+    public partial class ScheduleViewModel : ObservableObject
     {
         public int Day { get; set; }
-        public ObservableRangeCollection<Grouping<string, Session>> Agenda { get; } = new();
-        Random random = new Random();
-
-        public AgendaViewModel() 
+        public ObservableRangeCollection<Grouping<string, Session>> Schedule { get; } = new();
+        Random random = new();
+        public ScheduleViewModel()
         {
-            
+
         }
+
         [RelayCommand]
         Task LoadDataAsync()
         {
@@ -32,7 +32,7 @@ namespace app_myconference.ViewModels
                          group session by session.StartTimeDisplay into sessionGroup
                          select new Grouping<string, Session>(sessionGroup.Key, sessionGroup);
 
-            Agenda.AddRange(sorted);
+            Schedule.AddRange(sorted);
 
             return Task.CompletedTask;
 
@@ -49,8 +49,8 @@ namespace app_myconference.ViewModels
                         End = start.AddHours(offset + 1)
                     });
                 }
-                
             }
         }
+
     }
 }
